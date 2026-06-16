@@ -1,0 +1,10 @@
+<launch>
+  <!-- Run on the developer station. The robot should already be running the headless comp2026 navigation/task stack. -->
+  <arg name="rviz_config" default="$(find dog_dev_rviz)/config/comp2026_nav_debug.rviz"/>
+
+  <node pkg="rviz"
+        type="rviz"
+        name="dog_comp2026_nav_remote_rviz"
+        args="-d $(arg rviz_config)"
+        output="screen"/>
+</launch>

@@ -1,0 +1,23 @@
+<launch>
+  <!-- Run on the developer station. The robot should already be running the headless VINS chain. -->
+  <arg name="rviz_config" default="$(find dog_dev_rviz)/config/dog_vins_localization.rviz"/>
+  <arg name="publish_world_odom_tf" default="false"/>
+  <arg name="publish_camera_base_tf" default="false"/>
+
+  <node if="$(arg publish_camera_base_tf)"
+        pkg="tf"
+        type="static_transform_publisher"
+        name="dev_rviz_base_link_to_camera_link_tf"
+        args="0.2 0.0 0.0 -0.1635689211 0.0 0.0 0.9865319093 base_link camera_link 100"/>
+
+  <node if="$(arg publish_world_odom_tf)"
+        pkg="tf"
+        type="static_transform_publisher"
+        name="dev_rviz_world_to_odom_tf"
+        args="0 0 0 0 0 0 world odom 100"/>
+
+  <node pkg="rviz"
+        type="rviz"
+        name="dog_vins_remote_rviz"
+        args="-d $(arg rviz_config)"/>
+</launch>

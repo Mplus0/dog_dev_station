@@ -1,0 +1,81 @@
+# Operating system files
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor and IDE state
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.swp
+*.swo
+*~
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# C/C++ and CMake build outputs
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+
+# ROS 1 catkin workspaces
+devel/
+install/
+log/
+logs/
+.catkin_tools/
+.ros/
+catkin_generated/
+
+# ROS 2 colcon workspaces
+.colcon/
+
+# Runtime data, recordings, and generated diagnostics
+*.bag
+*.bag.active
+*.db3
+*.mcap
+*.log
+*.pid
+core
+core.*
+
+# Large model/checkpoint outputs
+*.onnx
+*.pt
+*.pth
+*.engine
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+

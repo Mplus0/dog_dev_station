@@ -1,0 +1,19 @@
+<launch>
+  <!-- Run on the developer station only when doing offline URDF/model inspection. -->
+  <!-- Do not use this against the live robot main ROS master unless duplicate TF/robot_description is intended. -->
+  <arg name="urdf_path" default="$(find dog_dev_lite3_description)/Lite3/urdf/Lite3.urdf"/>
+  <arg name="use_gui" default="true"/>
+  <arg name="rviz_config" default="$(find dog_dev_rviz)/config/comp2026_lite3_model_check.rviz"/>
+
+  <include file="$(find dog_dev_lite3_description)/launch/dog_dev_lite3_model_check_offline_only.launch">
+    <arg name="urdf_path" value="$(arg urdf_path)"/>
+    <arg name="use_gui" value="$(arg use_gui)"/>
+    <arg name="start_rviz" value="false"/>
+  </include>
+
+  <node pkg="rviz"
+        type="rviz"
+        name="dog_comp2026_lite3_model_offline_rviz"
+        args="-d $(arg rviz_config)"
+        output="screen"/>
+</launch>

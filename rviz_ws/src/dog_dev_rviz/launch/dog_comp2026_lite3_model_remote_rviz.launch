@@ -1,0 +1,11 @@
+<launch>
+  <!-- Run on the developer station. Display-only RViz for Lite3 model/TF topics from the robot ROS master. -->
+  <!-- This launch does not publish robot_description, joint states, robot_state_publisher, or TF. -->
+  <arg name="rviz_config" default="$(find dog_dev_rviz)/config/comp2026_lite3_model_check.rviz"/>
+
+  <node pkg="rviz"
+        type="rviz"
+        name="dog_comp2026_lite3_model_remote_rviz"
+        args="-d $(arg rviz_config)"
+        output="screen"/>
+</launch>

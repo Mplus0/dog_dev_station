@@ -1,0 +1,33 @@
+<launch>
+  <!-- OFFLINE ONLY: map + AMCL + model display, optionally with rosbag playback. -->
+  <!-- This launch can set /use_sim_time, start map/amcl, publish robot_description, joint states, robot_state_publisher, and TF. -->
+  <!-- Do not run it against the live robot main ROS master. -->
+  <arg name="navigation_map_yaml" default="$(find allmovebase)/map/map.yaml"/>
+  <arg name="amcl_map_yaml" default="$(find allmovebase)/map/map_amcl.yaml"/>
+  <arg name="urdf_path" default="$(find dog_dev_lite3_description)/Lite3/urdf/Lite3.urdf"/>
+  <arg name="use_gui" default="false"/>
+  <arg name="start_rviz" default="true"/>
+  <arg name="rviz_config" default="$(find dog_dev_lite3_description)/rviz/lite3_model_check.rviz"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="use_bag" default="false"/>
+  <arg name="bag_file" default=""/>
+
+  <param name="use_sim_time" value="$(arg use_sim_time)"/>
+
+  <include file="$(find allmovebase)/launch/map_server.launch">
+    <arg name="navigation_map_yaml" value="$(arg navigation_map_yaml)"/>
+    <arg name="amcl_map_yaml" value="$(arg amcl_map_yaml)"/>
+  </include>
+  <include file="$(find allmovebase)/launch/amcl.launch"/>
+
+  <param name="robot_description" textfile="$(arg urdf_path)"/>
+  <node if="$(arg use_gui)" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="dog_dev_joint_state_publisher_gui"/>
+  <node unless="$(arg use_gui)" pkg="joint_state_publisher" type="joint_state_publisher" name="dog_dev_joint_state_publisher"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="dog_dev_robot_state_publisher"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="dog_dev_base_link_to_torso_tf"
+        args="0 0 0 0 0 0 base_link TORSO"/>
+
+  <node if="$(arg use_bag)" pkg="rosbag" type="play" name="dog_dev_bag_play" args="--clock $(arg bag_file)"/>
+
+  <node if="$(arg start_rviz)" pkg="rviz" type="rviz" name="dog_dev_lite3_map_amcl_debug_rviz" args="-d $(arg rviz_config)"/>
+</launch>

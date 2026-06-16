@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>dog_dev_rviz</name>
+  <version>0.1.0</version>
+  <description>Developer-station RViz dashboards for robot localization debugging.</description>
+
+  <maintainer email="todo@example.com">dog_dev_station</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>roslaunch</exec_depend>
+</package>
