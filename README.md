@@ -3,6 +3,8 @@
 用于查看和调试四足机器人定位系统的开发机端工具。
 机器人端应以无界面方式运行 VINS/桥接链路，RViz 则在开发机上运行。
 
+比赛现场更换 WiFi 或 IP 地址变化时，请参阅 [`README_FIELD_NETWORK.md`](README_FIELD_NETWORK.md)。
+
 ## RViz 工作空间
 
 在 Ubuntu/ROS Noetic 虚拟机中完成一次编译：
